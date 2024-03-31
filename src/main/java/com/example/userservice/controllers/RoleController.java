@@ -16,7 +16,8 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping
-    public ResponseEntity<Role> createRole(CreateRoleRequestDto request){
+    public ResponseEntity<Role> createRole(@RequestBody CreateRoleRequestDto request){
+        System.out.println(request.getName());
         Role role=roleService.createRole(request.getName());
         return new ResponseEntity<>(role, HttpStatus.OK);
     }

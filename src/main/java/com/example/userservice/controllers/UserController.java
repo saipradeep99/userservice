@@ -2,8 +2,6 @@ package com.example.userservice.controllers;
 
 import com.example.userservice.dtos.SetUserRolesRequestDto;
 import com.example.userservice.dtos.UserDto;
-import com.example.userservice.models.Role;
-import com.example.userservice.models.User;
 import com.example.userservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

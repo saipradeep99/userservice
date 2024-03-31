@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -32,11 +33,10 @@ public class UserService {
     public UserDto setUserRoles(Long userId, List<Long> roleIds){
         List<Role> roles = roleRepository.findAllByIdIn(roleIds);
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()) {
-            return null;
-        }
+        if(userOptional.isEmpty())  return null;
         User user=userOptional.get();
-        user.setRoles(Set.copyOf(roles));
+        Set<Role> roleSet = roles.stream().collect(Collectors.toSet());
+        user.setRoles(roleSet);
         User savedUser = userRepository.save(user);
         return UserDto.from(savedUser);
     }
